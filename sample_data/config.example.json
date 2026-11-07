@@ -1,0 +1,20 @@
+{
+  "cell_size": 5,
+  "rainfall_mm_per_hour": 80,
+  "rainfall_duration_hours": 24,
+  "infiltration_coefficient": 0.9,
+  "drainage_coefficient": 0.01,
+  "initial_saturation": 0.05,
+  "cohesion": 10,
+  "friction_angle": 30,
+  "soil_depth": 2,
+  "soil_unit_weight": 18,
+  "water_unit_weight": 9.81,
+  "risk_thresholds": [1, 1.2, 1.5],
+  "simulation_dt": 0.2,
+  "simulation_duration": 60,
+  "frame_interval": 1,
+  "particle_count_limit": 600,
+  "damping": 0.6,
+  "random_seed": 42
+}

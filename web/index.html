@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Terrain Lab · Landslide simulation</title><link rel="stylesheet" href="styles.css"><script src="app.js" defer></script></head>
+<body>
+<header><div><span class="eyebrow">UNIVERSITY FIELD LAB / 01</span><h1>Terrain & instability</h1><p>Explore how rainfall changes stability and drives material downhill.</p></div><span class="badge">Educational simulation</span></header>
+<main>
+<section class="viewer">
+<div class="toolbar"><label>Map layer <select id="layer"><option value="simulation">Landslide simulation</option><option value="elevation">Elevation</option><option value="slope">Slope angle</option><option value="fos">Factor of Safety</option><option value="risk">Risk classification</option></select></label><label><input type="checkbox" id="vectors"> Direction vectors</label></div>
+<div class="canvas-wrap"><canvas id="map" width="900" height="700" aria-label="Terrain map and landslide particles"></canvas><div id="empty">Load a simulation to explore the terrain.</div></div>
+<div id="legend" aria-label="Map legend"></div>
+<div class="playback"><button id="restart" disabled title="Return to first frame">↺ Restart</button><button id="prev" disabled>← Previous</button><button id="play" disabled>▶ Play</button><button id="pause" disabled>Ⅱ Pause</button><button id="next" disabled>Next →</button><label>Speed <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></label></div>
+<input id="timeline" type="range" min="0" max="0" value="0" disabled aria-label="Simulation timeline">
+<div class="time-row"><span id="clock">Motion — / Rainfall —</span><span id="frame">Frame —</span></div>
+</section>
+<aside>
+<span class="eyebrow">EXPERIMENT STATUS</span><h2>Rainfall → instability</h2>
+<div id="status" role="status">Loading default simulation…</div>
+<div class="metrics"><div><span>Soil saturation</span><strong id="saturation">—</strong><progress id="water" max="1" value="0"></progress></div><div><span>Minimum FoS</span><strong id="minimum">—</strong></div><div><span>Unstable cells</span><strong id="unstable">—</strong></div><div><span>Moving particles</span><strong id="moving">—</strong></div></div>
+<h3>Run parameters</h3><dl id="parameters"></dl>
+<p class="note">Rainfall hours are compressed into motion seconds. These are two separate clocks, not a real-time forecast.</p>
+<h3>Load another experiment</h3><label class="file-label">Select simulation.json<input id="file" type="file" accept=".json,application/json"></label>
+<p class="note">Generate new runs with Python, then load their JSON here. Replay works offline and never calls Python.</p>
+<details><summary>Read the mathematics</summary><p>∇Z = [∂Z/∂x, ∂Z/∂y]<br>θ = atan(|∇Z|)<br>D = −∇Z / |∇Z|</p><p>More saturation raises pore pressure and lowers FoS. Particles accelerate along D when FoS &lt; 1, with velocity damping.</p><p>White dots: moving material.<br>Dark dots: stopped material.<br>Risk thresholds are educational categories.</p></details>
+</aside>
+</main><footer>Simplified educational model. Must not be used as a real-world engineering landslide warning or safety system.</footer>
+</body></html>
